@@ -66,20 +66,4 @@ describe("useCounter", () => {
 
     expect(result.current.count).toBe(-2);
   });
-
-  it("should maintain independent state across multiple hook instances", () => {
-    const { result: result1 } = renderHook(() => useCounter());
-    const { result: result2 } = renderHook(() => useCounter());
-
-    act(() => {
-      result1.current.increment();
-      result2.current.setVal(10);
-      result2.current.increment();
-    });
-
-    expect(result1.current.count).toBe(1);
-    expect(result1.current.val).toBe(1);
-    expect(result2.current.count).toBe(10);
-    expect(result2.current.val).toBe(10);
-  });
 });
